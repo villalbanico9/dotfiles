@@ -1,0 +1,106 @@
+configuration {
+	  font:						        "Product Sans 12";
+    show-icons:             true;
+	  icon-theme: 					  "Papirus";
+    display-drun: 					"";
+    drun-display-format:    "{name}";
+    disable-history:        false;
+    fullscreen:             false;
+	  hide-scrollbar: 				true;
+	  sidebar-mode: 				  false;
+}
+
+window {
+    transparency:                   "real";
+    background-color:               #000000;
+    text-color:                     #fcfcfc;
+	  border:							            0px 0px 3px 0px;
+	  border-color:					          #4634eb;
+    border-radius:                  0px;
+	  width:							            600px;
+    height:                         405px;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+prompt {
+    enabled: 						            true;
+	  padding: 						            0px;
+	  background-color: 				      #000000;
+	  text-color: 					          #4634eb;
+	  font:							              "feather 14";
+}
+
+entry {
+    background-color:               #000000;
+    text-color:                     #fcfcfc;
+    placeholder-color:              #aaaaaa;
+    expand:                         true;
+    horizontal-align:               0;
+    placeholder:                    "Search...";
+    padding:                        0px 0px 0px 25px;
+    blink:                          true;
+}
+
+inputbar {
+	  children: 						          [ prompt, entry ];
+    background-color:               #000000;
+    text-color:                     #4634eb ;
+    expand:                         false;
+    margin:                         0px;
+    padding:                        12px;
+}
+
+listview {
+    background-color:               #000000;
+    padding:                        0px;
+    columns:                        1;
+    lines:                          7;
+    spacing:                        5px;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               #000000;
+	  border:							            0px;
+    border-radius:                  0px;
+	  border-color:					          #4634eb;
+    children:                       [ inputbar, listview ];
+    spacing:                       	0px;
+    padding:                        0px;
+}
+
+element {
+    background-color:               #000000;
+    text-color:                     #fcfcfc;
+    orientation:                    horizontal;
+    border-radius:                  0px;
+    padding:                        10px;
+}
+
+element-icon {
+    background-color:               transparent;
+    text-color:               		  inherit;
+    size:                           26px;
+    border:                         0px;
+}
+
+element-text {
+    background-color:               transparent;
+    text-color:               		  inherit;
+    expand:                         true;
+    horizontal-align:               0;
+    vertical-align:                 0.5;
+    margin:                         0px 3px 0px 20px;
+}
+
+element selected {
+    background-color:               #4634eb;
+    text-color:                     #fcfcfc;
+	  border:							            0px 0px 0px 0px;
+    border-radius:                  0px;
+    border-color:                  	@ac;
+}

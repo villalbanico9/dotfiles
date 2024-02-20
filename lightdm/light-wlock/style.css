@@ -1,0 +1,207 @@
+@font-face {
+    font-family: 'ProductSans';
+    src: url('./assets/fonts/Product\ Sans\ Regular.ttf') format('truetype');
+}
+
+* {
+    font-family: 'ProductSans';
+    margin: 0 auto;
+}
+    html, body, main {
+        width: 100%;
+        height: 100%;
+    }
+
+#bg {
+    width: 100%;
+    height: 100%;
+    background-image: url(assets/img/background.png);
+    background: cover;
+    position: absolute;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    filter: invert(100%) grayscale(100%) brightness(70%) invert(10%);
+}
+
+
+#users{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -50px;
+    background-color: rgba(0, 0, 0, 0.0);
+    border-radius: 9px;
+}
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: #fcfcfc;
+    font-size: 1em;
+}
+#alt-users > div{ cursor: pointer; }
+#alt-users > div:hover{ background: rgba(0,0,0,0.3); }
+.user .background {
+    border-radius: 10px;
+    margin-bottom: 20px;}
+.user h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8em;
+    text-transform: capitalize;
+}
+#main-user h1 {
+    font-weight: bold;
+    margin: 10px;
+}
+#main-user .warn {
+    text-align: center;
+    font-size: 1em;
+    color: #fcfcfc;
+}
+.user input[type="password"] {
+    color: #fcfcfc;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-left: 15px;
+    padding: 8px;
+    margin: 14px;
+    width: 250px;
+    letter-spacing: 3px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2 );
+    border-bottom: 2px solid #fcfcfc;
+}
+.user input:focus {
+    outline: none;
+}
+.user .avatar {
+    cursor:pointer;
+}
+.user img {
+    width: 180px;
+    filter: invert(100%) grayscale(100%) brightness(70%) invert(10%);
+}
+
+#alt-users {
+    transition: margin-left 0.3s;
+}
+#alt-users.hidden {
+    margin-left: -280px;
+}
+#alt-users.shown {
+    margin-left: 0;
+}
+
+
+.active{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+.sessions {
+    position: absolute;
+    bottom: 60px;
+    left: 0px;
+}
+.sessions li{
+    list-style: none;
+    color: #fcfcfc;
+}
+.sessions li:hover{
+    cursor: pointer;
+}
+
+#session {
+    position: absolute;
+    width: min-content;
+    bottom: 15px;
+    left: 30px;
+    position: absolute;
+    filter: invert(100%);
+}
+#session img{
+    width: 22px;
+    margin: 8px;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    filter: invert(100%);
+}
+.buttons img {
+    width: 22px;
+    margin: 8px;
+}
+
+
+#time {
+    color: #fcfcfc;
+    position: relative;
+    bottom: 200px; 
+    text-align: center;
+}
+.time {
+    font-size: 9em;
+    /* font-weight: bold; */
+}
+.date {
+    font-size: 2.4em;
+}
+
+
+
+.fade-up {
+    opacity: 1;
+    transform: translateY(0px);
+    animation: fadeUpAnimation 0.4s ease-out;
+}
+@keyframes fadeUpAnimation {
+    to {
+        opacity: 0;
+        transform: translateY(-400px);
+    }
+}
+
+.fade-down {
+    opacity: 0;
+    transform: translateY(-400px);
+    animation: fadeDownAnimation 0.4s ease-out;
+}
+@keyframes fadeDownAnimation {
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.fade-bg{
+    filter: brightness(50%);
+}
+
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lockscreen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+    <div id="bg"></div> 
+    <main>
+
+        <div id="time">
+            <div id="clock" class="time">00:00</div>
+            <div id="date" class="date">Monday, Jan 1</div>
+        </div>
+
+        <div id="login" class="hidden">
+            <div id="users">
+                <div id="alt-users" class="hidden"></div>
+
+                <div class="user" id="main-user">
+                    <div class="avatar">
+                        <img src="./assets/img/user.png" alt="user_icon">
+                    </div>
+
+                    <div style='display:table-cell; vertical-align: bottom;'></div>
+
+                    <div style='display:table-cell; vertical-align: bottom;'>
+                        <h1></h1>
+                        <input class="password" type="password" id="pass">
+                        <p class="warn" >Try again...</p>
+                    </div>
+            </div>
+        </div>
+
+        <div id="buttons" class="buttons hidden">
+            <a href="#" id="reboot"><img src="./assets/img/restart.svg" alt="restart"></a>
+            <a href="#" id="shutdown"><img src="./assets/img/shutdown.svg" alt="shutdown"></a>
+        </div>
+
+        <ul id="sessions" class="sessions hidden">
+            <div class="container">
+            </div>
+        </ul>
+
+        <a id="session" class="hidden" onclick="toggleIcon()" href="#"><img id="isession" src="./assets/img/menu.svg" alt="session"></a>
+
+    </main>
+
+    <script>
+
+        function $(c) { return document.querySelector(c); }
+        function pad0(n) { return n >= 10 ? n.toString() : "0" + n; }
+
+
+        // Update time
+        function updateTimeAndDate() {
+            var now = new Date();
+
+            var hours = ('0' + now.getHours()).slice(-2);
+            var minutes = ('0' + now.getMinutes()).slice(-2);
+            var timeString = hours + ':' + minutes;
+
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var dayOfWeek = days[now.getDay()];
+            var month = months[now.getMonth()];
+            var dayOfMonth = now.getDate();
+            var dateString = dayOfWeek + ', ' + month + ' ' + dayOfMonth;
+
+            document.getElementById('clock').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+        }
+        updateTimeAndDate();
+        setInterval(updateTimeAndDate, 1000);
+
+
+        // Toggle the login
+        function toggleHidden() {
+            var time = document.getElementById('time');
+            var bg = document.getElementById('bg');
+            var login = document.getElementById('login');
+            var passInput = document.getElementById('pass');
+            var buttons = document.getElementById('buttons');
+            var session = document.getElementById('session');
+            var isession = document.getElementById('isession');
+            var sessions = document.getElementById('sessions');
+            let interval = 1;
+            
+            function incInt () {
+                console.log('Int: ', interval);
+                interval++;
+            }
+            
+            setInterval(() => {
+                if(interval === 25) {
+                    time.classList.add('fade-down');
+                    time.classList.remove('fade-up');
+                    time.classList.remove('hidden');
+                    login.classList.add('hidden');
+                    bg.classList.remove('fade-bg');
+                    buttons.classList.add('hidden');
+                    session.classList.add('hidden');
+                    isession.src = "./assets/img/menu.svg";
+                    sessions.classList.add('hidden');
+                    interval = 1;
+                    clearInterval(int);
+                    
+                    setTimeout(function () {
+                        time.classList.remove('fade-down');
+                    }, 300);
+                    return;
+                }
+                
+                if(time.classList.contains('hidden')) {
+                    document.body.onclick = document.body.onkeypress = () => {
+                        interval = 1;
+                    }
+                    return;
+                }
+                
+                
+                if(login.classList.contains('hidden')) {
+                    document.body.onclick = document.body.onkeypress = () => {
+                        int = setInterval(incInt, 1000);
+                        time.classList.add('fade-up');
+                        bg.classList.add('fade-bg');
+                        
+                        setTimeout(function () {
+                            time.classList.add('hidden');
+                            login.classList.remove('hidden');
+                            buttons.classList.remove('hidden');
+                            session.classList.remove('hidden');
+                            passInput.value = "";
+                            passInput.focus();
+                        }, 300);
+                    };
+                    return;
+                }
+            },1000);
+        }
+        toggleHidden();
+        
+        
+        // Dont add spaces to the input and press esc to cancel
+        function keyDown(e) { 
+            var e = window.event || e;
+            var key = e.keyCode;
+            var time = document.getElementById('time');
+            
+            if (key == 32) {
+                if(time.classList.contains('hidden')) {
+                    e.preventDefault();
+                }
+            }
+            if (key == 27) {
+                var time = document.getElementById('time');
+                var bg = document.getElementById('bg');
+                var login = document.getElementById('login');
+                var buttons = document.getElementById('buttons');
+                var session = document.getElementById('session');
+                var isession = document.getElementById('isession');
+                var sessions = document.getElementById('sessions');
+                
+                if(time.classList.contains('hidden')) {
+                    time.classList.remove('fade-up');
+                    time.classList.remove('hidden');
+                    time.classList.add('fade-down');
+                    login.classList.add('hidden');
+                    bg.classList.remove('fade-bg');
+                    buttons.classList.add('hidden');
+                    session.classList.add('hidden');
+                    isession.src = "./assets/img/menu.svg";
+                    sessions.classList.add('hidden');
+                    interval = 1;
+                    clearInterval(int);
+                    
+                    setTimeout(function () {
+                        time.classList.remove('fade-down');
+                    }, 400);
+                    return;
+                }
+            }
+        }
+        document.addEventListener('keydown', keyDown);
+    
+
+        // Session icon
+        function toggleIcon() {
+            var isession = document.getElementById('isession');
+            var sessions = document.getElementById('sessions');
+            var src = isession.src;
+            var img1 = "assets/img/menu.svg";
+            var img2 = "assets/img/menu_open.png";
+
+            if (src.includes(img1)) {
+                isession.src = "./"+img2;
+                sessions.classList.remove('hidden');
+            }
+            if (src.includes(img2)){
+                isession.src = "./"+img1;
+                sessions.classList.add('hidden');
+            }
+        }
+
+
+        // Login
+        class Login {
+
+            constructor() {
+                this.defaultUser = null;
+                this.otherUsers = [];
+                this.password = "";
+
+                this.bindEvents();
+                this.setupSessions();
+                this.setupUsers();
+            }
+
+            bindEvents() {
+                $("#main-user .avatar").onclick = () => {
+                    if($("#alt-users").className === "shown") {
+                        $("#alt-users").className = "hidden";
+                    } else {
+                        $("#alt-users").className = "shown";
+                    }
+                };
+
+                $("#main-user .password").onkeydown = e => {
+                    if(e.keyCode == 13) {
+                        if(!lightdm._username)
+                            lightdm.start_authentication(this.defaultUser.name);
+                        this.password = $("#main-user .password").value;
+                    } else {
+                        $("#main-user .warn").style.display="none";
+                    }
+                };
+
+
+                // actions
+                $("#shutdown").onclick = () => lightdm.shutdown();
+                $("#reboot").onclick = () => lightdm.restart();
+
+                if(!lightdm.can_shutdown)  $("#shutdown").style.display="none";
+                if(!lightdm.can_restart)   $("#reboot").style.display="none";
+                if(!lightdm.can_shutdown && !lightdm.can_restart) {
+                $("#actions").style.display="none";
+                }
+            }
+
+            // users
+            setupUsers() {
+                this.updateDefault(-1);
+            }
+
+            updateDefault(idx) {
+                if(lightdm._username){
+                    lightdm.cancel_authentication();
+                }
+                lightdm.cancel_timed_login();
+
+                $("#alt-users").className = "hidden";
+                if(idx === -1)
+                    if(lightdm.select_user_hint)
+                        this.defaultUser = lightdm.users.find(user => user.username === lightdm.select_user_hint);
+                    else
+                        this.defaultUser = lightdm.users[0];
+                else this.defaultUser = this.otherUsers[idx];
+                if(this.defaultUser.session) {
+                    for(let i = 0; i < lightdm.sessions.length; i++) {
+                        if(lightdm.sessions[i].key === this.defaultUser.session) {
+                            this.changeSession(i);
+                            break;
+                        }
+                    }
+                } else {
+                    this.changeSession(0);
+                }
+
+                // HACK: lightdm produces duplicate users for some reason
+                const userHash = {};
+                this.otherUsers = [];
+                for(let user of lightdm.users) {
+                    if( user.username !== this.defaultUser.username &&
+                        !userHash.hasOwnProperty(user.username) ) {
+                        this.otherUsers.push(user);
+                        userHash[user.username] = true;
+                    }
+                }
+                lightdm.start_authentication(this.defaultUser.username);
+
+                // main user
+                $("#main-user h1").textContent = this.defaultUser.display_name;
+                $(".password").value="";
+                $(".password").focus();
+                $("#main-user .warn").style.display = "none";
+
+                // others
+                let html = "";
+                for(let i = 0; i < this.otherUsers.length; i++) {
+                    const user = this.otherUsers[i];
+                    html += `
+                    <div class="user" onClick="window.login.updateDefault(${i});">
+                        <div class="background"></div>
+                        <div style='display:table-cell; vertical-align: bottom;'>
+                            <div class="avatar">
+                                <img src="./assets/img/user.png" alt="user_icon">
+                            </div>
+                        </div>
+                        <div style='display:table-cell; vertical-align: middle;'>
+                            <h1>${user.display_name}</h1>
+                        </div>
+                    </div>
+                    `;
+                }
+                $("#alt-users").innerHTML = html;
+
+            }
+
+            // sessions
+            setupSessions() {
+                let html = "";
+                for(let i = 0; i < lightdm.sessions.length; i++) {
+                    const session = lightdm.sessions[i];
+                    html+=`<li data-idx="${i}" onclick="window.login.changeSession(${i});">${session.name}</li>`;
+                }
+                $("#sessions .container").innerHTML = html;
+                $("#sessions .container li:first-child").classList.add("active");
+            }
+
+            changeSession(idx) {
+                $("#sessions .container li.active").classList.remove("active");
+                $(`#sessions .container li[data-idx="${idx}"]`).classList.add("active");
+            }
+            }
+
+            function authentication_complete() {
+            console.log("complete?");
+            if (lightdm.is_authenticated)
+                document.body.classList.add('fade-out') || setTimeout(function() {lightdm.login(lightdm.authentication_user, lightdm.sessions[parseInt($("#sessions .active").dataset.idx)].key);}, 300);
+            else if(window.login.password) {
+                $(".password").value="";
+                $("#main-user .warn").style.display = "block";
+                $("#main-user .warn").textContent="Try again...";
+            }
+            }
+
+            function show_message(msg) {
+            $("#main-user .warn").textContent = err;
+            $("#main-user .warn").style.display = "block";
+            }
+
+            function show_error() {
+            console.log("error");
+            }
+
+            function show_prompt(text, type) {
+            if(text === "Password: ") {
+                lightdm.respond(window.login.password);
+            }
+            }
+
+            __lightdm.then(result => {
+            window.lightdm = result;
+            window.login = new Login();
+            });
+
+    </script>
+
+</body>
+</html>

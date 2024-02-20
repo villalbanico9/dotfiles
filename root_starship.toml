@@ -1,0 +1,26 @@
+format = """
+$character$username$directory$custom 
+"""
+
+add_newline = false
+
+[character]
+format = "[](bg:# fg:#191919 bold)[$symbol](bold)[](bg:#de2a46 fg:#191919 bold)"
+success_symbol = "[ 󰊠 ](bold bg:#191919 fg:#f2ae49)"
+error_symbol = "[ 󰧵 ](bold bg:#191919 fg:#de2a46)"
+
+[username]
+format = "[ $user ](bg:#de2a46 fg:#d1d1d1 bold)[](bg:# fg:#de2a46 bold)"
+disabled = false
+show_always = true
+
+[directory]
+truncation_length = 100
+truncate_to_repo = false
+format = "[ $path ](fg:#5040c9 bg:# bold)"
+
+[custom.1]
+command = 'echo "#_"'
+when = 'true'
+format = '[](bg:# fg:#191919 bold)[ $output ](bg:#191919 fg:#d1d1d1 bold)[](bg:# fg:#191919 bold)'
+
