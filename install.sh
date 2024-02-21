@@ -12,12 +12,8 @@ sudo locale-gen en_US.UTF-8
 
 echo "[+] Installing packages..."
 
-sudo pacman -Syu --noconfirm
-sudo pacman -S adwaita-cursors adwaita-icon-theme alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm bzip2 clang cmake curl devtools dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb git gnu-netcat go gzip hashcat hydra impacket inetutils iputils john kitty less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua man-db mesa mesa-utils metasploit net-tools networkmanager nmap perl picom pocl polybar psmisc pulseaudio python qt5ct rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrand xterm zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm
-
-sudo pacman -S --needed base-devel --noconfirm
-sudo pacman -S wget git --noconfirm
-sudo systemctl enable lightdm.service
+sudo pacman -Syu --noconfirm --needed
+sudo pacman -S adwaita-cursors adwaita-icon-theme alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm bzip2 clang cmake curl devtools dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb git gnu-netcat go gzip hashcat hydra impacket inetutils iputils john kitty less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua man-db mesa mesa-utils metasploit net-tools networkmanager nmap perl picom pocl polybar psmisc pulseaudio python qt5ct rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrand xterm zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
 
 
 ## Install git packages
@@ -64,6 +60,7 @@ sudo rm zsh/.zshrc
 sudo cp -r zsh/* /usr/share/
 sudo rm -rf zsh 
 
+sudo systemctl enable lightdm.service
 sudo mkdir -p /usr/share/lightdm-webkit/themes/
 sudo mkdir -p /etc/lightdm/
 sudo cp -r lightdm/light-wlock /usr/share/lightdm-webkit/themes/
