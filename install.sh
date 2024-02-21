@@ -39,11 +39,9 @@ git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 
 echo "[+] Creating config files..."
 
-git clone https://github.com/villalbanico9/dotfiles.git
-cd dotfiles
-rm README.md
+sudo rm README.md
 
-chmod +x {sxhkd/sxhkdrc,bspwm/bspwmrc,polybar/launch.sh,polybar/scripts/*.sh,bin/*.sh}
+sudo chmod +x {sxhkd/sxhkdrc,bspwm/bspwmrc,polybar/launch.sh,polybar/scripts/*.sh,bin/*.sh}
 
 tar -xzvf assets/fonts.tar.gz
 sudo chown -R root:root fonts
