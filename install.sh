@@ -13,7 +13,7 @@ sudo locale-gen en_US.UTF-8
 echo "[+] Installing packages..."
 
 sudo pacman -Syu --noconfirm
-sudo pacman -S adwaita-cursors adwaita-icon-theme alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm bzip2 clang cmake curl devtools dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb git gnu-netcat go gzip hashcat hydra inetutils iputils john kitty lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua mesa mesa-utils metasploit net-tools networkmanager nmap perl picom pocl polybar psmisc pulseaudio python qt5ct rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xterm zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm
+sudo pacman -S adwaita-cursors adwaita-icon-theme alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm bzip2 clang cmake curl devtools dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb git gnu-netcat go gzip hashcat hydra impacket inetutils iputils john kitty less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua man-db mesa mesa-utils metasploit net-tools networkmanager nmap perl picom pocl polybar psmisc pulseaudio python qt5ct rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrand xterm zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm
 
 sudo pacman -S --needed base-devel --noconfirm
 sudo pacman -S wget git --noconfirm
@@ -22,16 +22,22 @@ sudo systemctl enable lightdm.service
 
 ## Install git packages
 
-echo "[+] Installing Git packages..."
+echo "[+] Installing additional packages..."
 
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
-git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf 
+sudo find / -name "EXTERNALLY-MANAGED" 2>/dev/null -exec mv {} {}.old \;
+sudo python -m ensurepip --upgrade
+wget "https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz" && tar zxfv Python-2.7.18.tgz && cd Python-2.7.18 && ./configure && make && sudo make install && cd .. && rm -rf Python-2.7.18
+#git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
+#git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf 
 wget "https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage" && chmod u+x nvim.appimage && sudo mv nvim.appimage /usr/bin/nvim
-git clone https://aur.archlinux.org/wfuzz.git && cd wfuzz && makepkg -si && cd .. && rm -rf wfuzz
-git clone https://aur.archlinux.org/burpsuite.git && cd gobuster && makepkg -si && cd .. && rm -rf gobuster
+go install github.com/OJ/gobuster/v3@latest
+sudo python -m pip install wfuzz
+git clone https://aur.archlinux.org/hash-id.git && cd hash-id && makepkg -si && cd .. && rm -rf hash-id 
+git clone https://aur.archlinux.org/burpsuite.git && cd burpsuite && makepkg -si && cd .. && rm -rf burpsuite
 git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit 
 sudo git clone https://github.com/longld/peda.git /root/peda && echo "source /root/peda/peda.py" >> /root/.gdbinit
 git clone https://github.com/helixarch/debtap.git && cd debtap && sudo mv debtap /usr/bin/debtap && cd .. && rm -rf debtap
+wget "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.0.1_build/ghidra_11.0.1_PUBLIC_20240130.zip" -O ghidra.zip && unzip ghidra.zip && sudo mv ghidra /opt
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 
 
@@ -45,8 +51,8 @@ sudo chmod +x {sxhkd/sxhkdrc,bspwm/bspwmrc,polybar/launch.sh,polybar/scripts/*.s
 
 tar -xzvf assets/fonts.tar.gz
 sudo chown -R root:root fonts
-sudo cp -r fonts /usr/share/fonts
-sudo rm -rf fonts
+sudo cp -r fonts /usr/share/
+sudo rm -rf fonts && sudo rm -rf assets/fonts.tar.gz
 
 sudo mkdir /usr/share/backgrounds
 sudo cp assets/background.png /usr/share/backgrounds
@@ -58,12 +64,11 @@ sudo rm zsh/.zshrc
 sudo cp -r zsh/* /usr/share/
 sudo rm -rf zsh 
 
-cd lightdm
 sudo mkdir -p /usr/share/lightdm-webkit/themes/
 sudo mkdir -p /etc/lightdm/
 sudo cp -r lightdm/light-wlock /usr/share/lightdm-webkit/themes/
 sudo cp lightdm/lightdm.conf /etc/lightdm/
-sudo cp lightdm/lightdm-webkit2-greeter /etc/lightdm/
+sudo cp lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
 sudo rm -rf lightdm
 
 echo 'QT_STYLE_OVERRIDE=Adwaita-Dark' | sudo tee -a /etc/environment
@@ -78,11 +83,11 @@ sudo rm -rf pam
 
 sudo mkdir /usr/share/wordlists
 wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip
-sudo mv SecList /usr/share/wordlists/
+sudo mv SecLists /usr/share/wordlists/
 wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt && sudo mv rockyou.txt /usr/share/wordlists/
 
 sudo cp -r * /root/.config/
-sudo rm /root/.config/starship.toml && sudo mv /root/.config/root_starship.toml /root/.config/starship.toml
+sudo mv /root/.config/root_starship.toml /root/.config/starship.toml
 cp -r * ~/.config
 
 sudo chsh -s $(which zsh)
@@ -109,8 +114,8 @@ if [ "$resp" == "y" ]; then
       sudo mkdir -p /etc/init.d/rc${x}.d 
     done
     sudo mount /dev/cdrom /mnt
-    tar xf /mnt/VMwareTools*.tar.gz -C /root
-    perl /root/vmware-tools-distrib/vmware-install.pl
+    sudo tar xf /mnt/VMwareTools*.tar.gz -C /root
+    sudo perl /root/vmware-tools-distrib/vmware-install.pl -d
     
     git clone https://gitlab.archlinux.org/archlinux/packaging/packages/open-vm-tools.git
     cd open-vm-tools
