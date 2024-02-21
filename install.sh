@@ -1,7 +1,5 @@
 #!/bin/bash
 
-mkdir install
-cd install
 mkdir ~/{.config,Downloads,Docker,Workdir,Scripts,Screenshots}
 sudo mkdir /root/.config
 
@@ -47,12 +45,10 @@ rm README.md
 
 chmod +x {sxhkd/sxhkdrc,bspwm/bspwmrc,polybar/launch.sh,polybar/scripts/*.sh,bin/*.sh}
 
-cd assets
-tar -xzvf fonts.tar.gz
-sudo chown -R root:root assets/fonts
-sudo cp -r assets/fonts /usr/share/fonts
-sudo rm -rf ./assets/fonts.tar.gz
-sudo rm -rf ./assets/fonts
+tar -xzvf assets/fonts.tar.gz
+sudo chown -R root:root fonts
+sudo cp -r fonts /usr/share/fonts
+sudo rm -rf fonts
 
 sudo mkdir /usr/share/backgrounds
 sudo cp assets/background.png /usr/share/backgrounds
@@ -82,6 +78,7 @@ echo "unlock_time = 15" | sudo tee -a /etc/security/faillock.conf
 echo "nodelay" | sudo tee -a /etc/security/faillock.conf
 sudo rm -rf pam
 
+sudo mkdir /usr/share/wordlists
 wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip
 sudo mv SecList /usr/share/wordlists/
 wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt && sudo mv rockyou.txt /usr/share/wordlists/
@@ -89,9 +86,6 @@ wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rocky
 sudo cp -r * /root/.config/
 sudo rm /root/.config/starship.toml && sudo mv /root/.config/root_starship.toml /root/.config/starship.toml
 cp -r * ~/.config
-
-cd .. && sudo rm -rf dotfiles
-cd .. && sudo rm -rf install
 
 sudo chsh -s $(which zsh)
 sudo chsh -s $(which zsh) $USER
@@ -145,13 +139,15 @@ if [ "$resp" == "y" ]; then
     sudo pacman -S xf86-input-vmmouse xf86-video-vmware mesa --noconfirm
     
     git clone https://github.com/rasa/vmware-tools-patches.git
-    cd vmware-tools-patches && sudo ./patched-open-vm-tools.sh && cd .. && sudo rm -rf vmware-tools-patches
+    cd vmware-tools-patches
+    sudo ./patched-open-vm-tools.sh
+    cd .. && sudo rm -rf vmware-tools-patches
 
     echo "[i] Reboot and run this to start VMware Tools: sudo /etc/init.d/rc6.d/K99vmware-tools start"
   fi
 fi
 
 echo "[+] Removing installation files..."
-cd .. && sudo rm -rf install
+cd .. && sudo rm -rf dotfiles
 
 echo "[*] Done!"
