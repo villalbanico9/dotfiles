@@ -25,7 +25,7 @@ sudo systemctl enable lightdm.service
 echo "[+] Installing additional packages..."
 
 sudo find / -name "EXTERNALLY-MANAGED" 2>/dev/null -exec mv {} {}.old \;
-sudo python -m ensurepip --upgrade
+sudo python3 -m ensurepip --upgrade
 wget "https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz" && tar zxfv Python-2.7.18.tgz && cd Python-2.7.18 && ./configure && make && sudo make install && cd .. && rm -rf Python-2.7.18
 #git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
 #git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf 
