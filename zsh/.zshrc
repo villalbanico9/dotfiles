@@ -8,7 +8,7 @@ export VISUAL=nvim
 
 
 # PATH
-PATH=/root/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/nico/.local/bin
+PATH=/root/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/$USER/.local/bin
 
 
 setopt autocd              # change directory just by typing its name
@@ -130,11 +130,11 @@ source /usr/share/zsh-sudo/sudo.plugin.zsh
 function settarget(){
     ip_address=$1
     machine_name=$2
-    echo "$ip_address $machine_name" > /home/nico/.config/bin/target
+    echo "$ip_address $machine_name" > /home/$USER/.config/bin/target
 }
 
 function cleartarget(){
-    echo '' > /home/nico/.config/bin/target
+    echo '' > /home/$USER/.config/bin/target
 }
 
 function dockerclear(){
@@ -149,7 +149,7 @@ function dockerclear(){
 function rmw(){
   read yn\?"¿Quieres vaciar el directorio de trabajo? [y/n]: "
   if [ $yn = "y" ];then 
-    /bin/rm -rf /home/nico/Workdir/*
+    /bin/rm -rf /home/$USER/Workdir/*
     echo "[*] Se ha vaciado el directorio de trabajo"
   else
     echo "[!] No se ha vaciado el directorio de trabajo"
@@ -158,19 +158,19 @@ function rmw(){
 }
 
 function cdw(){
-  cd /home/nico/Workdir/
+  cd /home/$USER/Workdir/
 }
 
 function cdn(){
-  cd /home/nico/Nico/
+  cd /home/$USER/Desktop/
 }
 
 function cds(){
-  cd /home/nico/Scripts/
+  cd /home/$USER/Scripts/
 }
 
 function cdd(){
-  cd /home/nico/Docker/
+  cd /home/$USER/Docker/
 }
 
 function extractPorts(){

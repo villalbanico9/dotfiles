@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir ~/{.config,Downloads,Docker,Workdir,Scripts,Screenshots}
+mkdir ~/{.config,Desktop,Downloads,Docker,Workdir,Scripts,Screenshots}
 sudo mkdir /root/.config
 
 echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
@@ -26,14 +26,14 @@ wget "https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz" && tar zxfv Py
 #git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
 #git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf 
 wget "https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage" && chmod u+x nvim.appimage && sudo mv nvim.appimage /usr/bin/nvim
-go install github.com/OJ/gobuster/v3@latest
+wget "https://github.com/OJ/gobuster/releases/download/v3.6.0/gobuster_Linux_i386.tar.gz" && tar -zxvf gobuster_Linux_i386.tar.gz && rm {gobuster_Linux_i386.tar.gz,LICENSE,README.md} && sudo mv gobuster /usr/bin/
 sudo python -m pip install wfuzz
 git clone https://aur.archlinux.org/hash-id.git && cd hash-id && makepkg -si && cd .. && rm -rf hash-id 
 git clone https://aur.archlinux.org/burpsuite.git && cd burpsuite && makepkg -si && cd .. && rm -rf burpsuite
 git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit 
 sudo git clone https://github.com/longld/peda.git /root/peda && echo "source /root/peda/peda.py" >> /root/.gdbinit
 git clone https://github.com/helixarch/debtap.git && cd debtap && sudo mv debtap /usr/bin/debtap && cd .. && rm -rf debtap
-wget "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.0.1_build/ghidra_11.0.1_PUBLIC_20240130.zip" -O ghidra.zip && unzip ghidra.zip && sudo mv ghidra /opt
+wget "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.0.1_build/ghidra_11.0.1_PUBLIC_20240130.zip" -O ghidra.zip && unzip ghidra.zip && rm ghidra.zip && sudo mv ghidra* /opt/ghidra
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 
 
@@ -60,7 +60,7 @@ sudo rm zsh/.zshrc
 sudo cp -r zsh/* /usr/share/
 sudo rm -rf zsh 
 
-sudo systemctl enable lightdm.service
+sudo systemctl enable lightdm
 sudo mkdir -p /usr/share/lightdm-webkit/themes/
 sudo mkdir -p /etc/lightdm/
 sudo cp -r lightdm/light-wlock /usr/share/lightdm-webkit/themes/
@@ -80,7 +80,7 @@ sudo rm -rf pam
 
 sudo mkdir /usr/share/wordlists
 wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip
-sudo mv SecLists /usr/share/wordlists/
+sudo mv SecLists-master /usr/share/SecLists
 wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt && sudo mv rockyou.txt /usr/share/wordlists/
 
 sudo cp -r * /root/.config/
