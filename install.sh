@@ -27,7 +27,7 @@ echo "[+] Installing Git packages..."
 git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
 git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf 
 wget "https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage" && chmod u+x nvim.appimage && sudo mv nvim.appimage /usr/bin/nvim
-git clone https://github.com/xmendez/wfuzz.git && cd wfuzz && makepkg -si && cd .. && rm -rf wfuzz
+git clone https://aur.archlinux.org/wfuzz.git && cd wfuzz && makepkg -si && cd .. && rm -rf wfuzz
 git clone https://aur.archlinux.org/burpsuite.git && cd gobuster && makepkg -si && cd .. && rm -rf gobuster
 git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit 
 sudo git clone https://github.com/longld/peda.git /root/peda && echo "source /root/peda/peda.py" >> /root/.gdbinit
