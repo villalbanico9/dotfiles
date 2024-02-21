@@ -23,11 +23,11 @@ echo "[+] Installing additional packages..."
 sudo find / -name "EXTERNALLY-MANAGED" 2>/dev/null -exec mv {} {}.old \;
 sudo python3 -m ensurepip --upgrade
 wget "https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz" && tar zxfv Python-2.7.18.tgz && cd Python-2.7.18 && ./configure && make && sudo make install && cd .. && rm -rf Python-2.7.18
-#git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
-#git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf 
+# git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
+# git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf 
 wget "https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage" && chmod u+x nvim.appimage && sudo mv nvim.appimage /usr/bin/nvim
 wget "https://github.com/OJ/gobuster/releases/download/v3.6.0/gobuster_Linux_i386.tar.gz" && tar -zxvf gobuster_Linux_i386.tar.gz && rm {gobuster_Linux_i386.tar.gz,LICENSE,README.md} && sudo mv gobuster /usr/bin/
-sudo python -m pip install wfuzz
+sudo python3 -m pip install wfuzz
 git clone https://aur.archlinux.org/hash-id.git && cd hash-id && makepkg -si && cd .. && rm -rf hash-id 
 git clone https://aur.archlinux.org/burpsuite.git && cd burpsuite && makepkg -si && cd .. && rm -rf burpsuite
 git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit 
@@ -78,14 +78,14 @@ echo "unlock_time = 15" | sudo tee -a /etc/security/faillock.conf
 echo "nodelay" | sudo tee -a /etc/security/faillock.conf
 sudo rm -rf pam
 
+sudo cp -r * /root/.config/
+sudo mv /root/.config/root_starship.toml /root/.config/starship.toml
+cp -r * ~/.config
+
 sudo mkdir /usr/share/wordlists
 wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip
 sudo mv SecLists-master /usr/share/SecLists
 wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt && sudo mv rockyou.txt /usr/share/wordlists/
-
-sudo cp -r * /root/.config/
-sudo mv /root/.config/root_starship.toml /root/.config/starship.toml
-cp -r * ~/.config
 
 sudo chsh -s $(which zsh)
 sudo chsh -s $(which zsh) $USER
