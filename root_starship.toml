@@ -5,9 +5,9 @@ $character$username$directory$custom
 add_newline = false
 
 [character]
-format = "[](bg:# fg:#191919 bold)[$symbol](bold)[](bg:#de2a46 fg:#191919 bold)"
-success_symbol = "[ 󰊠 ](bold bg:#191919 fg:#f2ae49)"
-error_symbol = "[ 󰧵 ](bold bg:#191919 fg:#de2a46)"
+format = "[](bg:# fg:#1a1a1a bold)[$symbol](bold)[](bg:#de2a46 fg:#1a1a1a bold)"
+success_symbol = "[ 󰊠 ](bold bg:#1a1a1a fg:#f2ae49)"
+error_symbol = "[ 󰧵 ](bold bg:#1a1a1a fg:#de2a46)"
 
 [username]
 format = "[ $user ](bg:#de2a46 fg:#d1d1d1 bold)[](bg:# fg:#de2a46 bold)"
@@ -22,5 +22,5 @@ format = "[ $path ](fg:#5040c9 bg:# bold)"
 [custom.1]
 command = 'echo "#_"'
 when = 'true'
-format = '[](bg:# fg:#191919 bold)[ $output ](bg:#191919 fg:#d1d1d1 bold)[](bg:# fg:#191919 bold)'
+format = '[](bg:# fg:#1a1a1a bold)[ $output ](bg:#1a1a1a fg:#d1d1d1 bold)[](bg:# fg:#1a1a1a bold)'
 

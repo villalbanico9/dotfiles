@@ -1,0 +1,197 @@
+configuration {
+    modi:                                 "drun,file-browser-extended,window,run";
+    show-icons:                           true;
+    display-drun:                         "";
+    display-run:                          "";
+    display-file-browser-extended:        "";
+    display-window:                       "";
+    drun-display-format:                  "{name}";
+    window-format:                        "{c}"; 
+    kb-custom-1:                          "Control+period";
+}
+
+* {
+    font:                        "Product Sans 12";
+    background:                  #151515f8;
+    background-alt:              #ffffff0c;
+    foreground:                  #ffffffff;
+    selected:                    #ffffff1f;
+    active:                      #ffffff1f;
+    urgent:                      #ffffff1f;
+}
+
+window {
+    /* properties for window widget */
+    transparency:                "real";
+    location:                    north east;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       750px;
+    x-offset:                    -20%;
+    y-offset:                    43.5%;
+
+    /* properties for all widgets */
+    enabled:                     true;
+    border-radius:               8px;
+    border:                      0.1em;
+    border-color:                #1f1f1f;
+    cursor:                      "default";
+    background-color:            @background;
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "inputbar", "message" ,"listbox" ];
+}
+
+listbox {
+    spacing:                     20px;
+    padding:                     40px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "listview" ];
+}
+
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     50px 50px 30px 50px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    orientation:                 horizontal;
+    children:                    [ "textbox-prompt-colon", "entry", "dummy", "mode-switcher" ];
+}
+textbox-prompt-colon {
+    font:                       "Product Sans 20";
+    enabled:                     true;
+    expand:                      false;
+    str:                         "";
+    padding:                     5px 13px 0px 13px;
+    border-radius:               100%;
+    background-color:            @background-alt;
+    text-color:                  inherit;
+}
+entry {
+    enabled:                     true;
+    expand:                      false;
+    width:                       250px;
+    padding:                     10px 20px 10px 20px;
+    border-radius:               100%;
+    background-color:            @background-alt;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Search";
+    placeholder-color:           inherit;
+}
+dummy {
+    expand:                      true;
+    background-color:            transparent;
+}
+
+mode-switcher{
+    enabled:                     true;
+    spacing:                     10px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+button {
+    font:                       "Material Symbols Outline 16";
+    padding:                     0px 0.58% 0px 0.58%;
+    border-radius:               100%;
+    background-color:            @background-alt;
+    text-color:                  inherit;
+    cursor:                      pointer;
+}
+button selected {
+    background-color:            @selected;
+    text-color:                  @foreground;
+}
+
+listview {
+    enabled:                     true;
+    sort:                        "name";
+    history-enabled:             false;
+    drun: true;
+    columns:                     1;
+    lines:                       12;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    spacing:                     10px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      "default";
+}
+
+element {
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     8px 10px 8px 10px;
+    border-radius:               6px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+}
+element normal.normal {
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+element normal.urgent {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+element normal.active {
+    background-color:            @active;
+    text-color:                  @foreground;
+}
+element selected.normal {
+    background-color:            @selected;
+    text-color:                  @foreground;
+}
+element selected.urgent {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+element selected.active {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        28px;
+    cursor:                      inherit;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+message {
+    background-color:            transparent;
+    margin:                      5px 10px -2.4% 50px;
+}
+textbox {
+    padding:                     0px;
+    border-radius:               100%;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+error-message {
+    padding:                     12px;
+    border-radius:               20px;
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+
+

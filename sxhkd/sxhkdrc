@@ -4,9 +4,9 @@ super + Return
 
 # Launcher
 super + @space
-	rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/scripts/rofi/launcher.rasi
+  ~/.config/bin/menu.sh drun	
 shift + super + @space
-  bspc rule -a \* -o state=floating center=true rectangle=250x60+0+0 && kitty sudo -EH rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/scripts/rofi/launcher.rasi
+  bspc rule -a \* -o state=floating center=true rectangle=250x60+0+0 && kitty sudo -EH rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/launcher.rasi
 
 # Reload sxhkd
 super + Escape
@@ -35,19 +35,13 @@ super + BackSpace
 super + ctrl + BackSpace
   while bspc node 'any.leaf.!window' -k; do :; done
 
-# Layouts
-super + alt + f
-	bspc node focused.local -t \~{tiled,floating}
-F11
-  bspc desktop --focus --layout next
-
 # Node Flags
 super + ctrl + {m,x,y,z}
   bspc node -g {marked,locked,sticky,private}
 
 # Focus
 alt + Tab
-  bspc node -f next.local.window
+  ~/.config/bin/menu.sh window
 
 super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
@@ -108,5 +102,12 @@ F4
 
 # Powermenu
 Pause
-  .config/polybar/scripts/powermenu.sh
+  ~/.config/bin/menu.sh run
 
+# Set Target
+super + t
+  ~/.config/bin/target_set.sh
+
+# Change Layout
+super + shift + l
+  ~/.config/bin/layout.sh

@@ -11,9 +11,9 @@ sudo locale-gen en_US.UTF-8
 ## Install pacman packages
 
 echo "[+] Installing packages..."
-
+curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh
 sudo pacman -Syu --noconfirm --needed
-sudo pacman -S adwaita-cursors adwaita-icon-theme alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm bzip2 clang cmake curl devtools dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb git gnu-netcat go gzip hashcat hydra impacket inetutils iputils john kitty less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua man-db mesa mesa-utils metasploit net-tools networkmanager nmap perl picom pocl polybar psmisc pulseaudio python qt5ct rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrandr xterm zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
+sudo pacman -S adwaita-cursors alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm burpsuite bzip2 clang cmake crackmapexec curl devtools docker dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb ghidra git gnu-netcat go gobuster gzip hashcat hash-identifier hydra inetutils impacket iputils john kitty less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua lxappearance man-db mariadb mesa mesa-utils metasploit net-tools networkmanager nmap openvpn paru perl picom pocl polybar psmisc pulseaudio python python2 qt5ct responder rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wfuzz wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrandr xterm yay zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
 
 
 ## Install git packages
@@ -22,18 +22,11 @@ echo "[+] Installing additional packages..."
 
 sudo find / -name "EXTERNALLY-MANAGED" 2>/dev/null -exec mv {} {}.old \;
 sudo python3 -m ensurepip --upgrade
-wget "https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz" && tar zxfv Python-2.7.18.tgz && cd Python-2.7.18 && ./configure && make && sudo make install && cd .. && rm -rf Python-2.7.18
-# git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
-# git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf 
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py && sudo python2 get-pip.py
 wget "https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage" && chmod u+x nvim.appimage && sudo mv nvim.appimage /usr/bin/nvim
-wget "https://github.com/OJ/gobuster/releases/download/v3.6.0/gobuster_Linux_i386.tar.gz" && tar -zxvf gobuster_Linux_i386.tar.gz && rm {gobuster_Linux_i386.tar.gz,LICENSE,README.md} && sudo mv gobuster /usr/bin/
-sudo python3 -m pip install wfuzz
-git clone https://aur.archlinux.org/hash-id.git && cd hash-id && makepkg -si && cd .. && rm -rf hash-id 
-git clone https://aur.archlinux.org/burpsuite.git && cd burpsuite && makepkg -si && cd .. && rm -rf burpsuite
 git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit 
 sudo git clone https://github.com/longld/peda.git /root/peda && echo "source /root/peda/peda.py" >> /root/.gdbinit
 git clone https://github.com/helixarch/debtap.git && cd debtap && sudo mv debtap /usr/bin/debtap && cd .. && rm -rf debtap
-wget "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.0.1_build/ghidra_11.0.1_PUBLIC_20240130.zip" -O ghidra.zip && unzip ghidra.zip && rm ghidra.zip && sudo mv ghidra* /opt/ghidra
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 
 

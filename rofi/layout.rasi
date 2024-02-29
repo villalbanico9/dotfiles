@@ -1,0 +1,108 @@
+* {
+    background:     #151515d0;
+    background-alt: #ffffff2f;
+    foreground:     #fcfcfcff;
+}
+
+configuration {
+	modi:                       "drun";
+    show-icons:                 true;
+    display-drun:               " Apps";
+	drun-display-format:        "{name}";
+}
+
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       50%;
+    x-offset:                    0px;
+    y-offset:                    0px;
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    background-color:            @background;
+    cursor:                      "default";
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     20px;
+    margin:                      0px;
+    padding:                     30px;
+    border:                      0px solid;
+    border-radius:               0px 0px 0px 0px;
+    background-color:            transparent;
+    children:                    [ "listview" ];
+}
+
+listview {
+    width:                       100%;
+    enabled:                     true;
+    columns:                     7;
+    lines:                       1;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;  
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      "default";
+}
+
+element {
+    width:                       300px;
+    align:                       center;
+    background-color:            @background;
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     10px 10px;
+    border:                      0px solid;
+    border-radius:               6px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    orientation:                 vertical;
+    cursor:                      pointer;
+}
+element normal.normal {
+    width:                       300px;
+    align:                       center;
+    margin:                      0px;
+    background-color:            transparent;
+    width:                       200px;
+    text-color:                  @foreground;
+}
+element selected.normal {
+    background-color:            @background-alt;
+    text-color:                  @foreground;
+}
+element-icon {
+    font:                        "Material Symbols Outline 10";
+    padding:                     10px 0px 0px 0px;
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        60px;
+    cursor:                      inherit;
+}
+element-text {
+    font:                        "Product Sans 12";
+    margin:                      10px 0px 0px 0px;
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
+

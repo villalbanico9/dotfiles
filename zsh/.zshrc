@@ -127,32 +127,32 @@ source /usr/share/zsh-sudo/sudo.plugin.zsh
 
 
 # Functions
-function settarget(){
+function setTarget(){
     ip_address=$1
     machine_name=$2
     echo "$ip_address $machine_name" > /home/$USER/.config/bin/target
 }
 
-function cleartarget(){
+function clearTarget(){
     echo '' > /home/$USER/.config/bin/target
 }
 
-function dockerclear(){
-  echo "[+] Limpiando docker..."
+function dockerClear(){
+  echo "[+] Cleaning Docker..."
   docker rm -f $(docker ps -a -q) &>/dev/null
   docker rmi $(docker images -a -q) &>/dev/null
   docker network prune -f  &>/dev/null
   docker volume prune -f &>/dev/null
-  echo "[+] Se han borrado todos los contenedores, imagenes y redes de docker."
+  echo "[+] Docker containers, images and networks correctly removed."
 }
 
 function rmw(){
-  read yn\?"¿Quieres vaciar el directorio de trabajo? [y/n]: "
+  read yn\?"[*] ¿Do you want to empty the Workdir? [y/n]: "
   if [ $yn = "y" ];then 
     /bin/rm -rf /home/$USER/Workdir/*
-    echo "[*] Se ha vaciado el directorio de trabajo"
+    echo "[+] All files removed"
   else
-    echo "[!] No se ha vaciado el directorio de trabajo"
+    echo "[!] Couldn't remove files"
   fi
   unset yn
 }
@@ -196,7 +196,7 @@ alias cat='bat --paging=never'
 alias catn='bat --style=plain'
 alias catnp='bat --style=plain --paging=never'
 alias cgrep='grep --color=always'
-alias ghidra='ghidraRun'
+alias ghidra='/opt/ghidra/ghidraRun'
 
 
 # Set keybindings for fzf
