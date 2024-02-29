@@ -13,7 +13,7 @@ sudo locale-gen en_US.UTF-8
 echo "[+] Installing packages..."
 curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh
 sudo pacman -Syu --noconfirm --needed
-sudo pacman -S adwaita-cursors alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm burpsuite bzip2 clang cmake crackmapexec curl devtools docker dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb ghidra git gnu-netcat go gobuster gzip hashcat hash-identifier hydra inetutils impacket iputils john kitty less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua lxappearance man-db mariadb mesa mesa-utils metasploit net-tools networkmanager nmap openvpn paru perl picom pocl polybar psmisc pulseaudio python python2 qt5ct responder rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wfuzz wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrandr xterm yay zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
+sudo pacman -S adwaita-cursors alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm burpsuite bzip2 clang cmake crackmapexec curl devtools docker dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb ghidra git gnu-netcat go gobuster gzip hashcat hash-identifier hydra inetutils impacket iputils john kitty less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua lxappearance man-db mariadb mesa mesa-utils metasploit net-tools networkmanager nmap openvpn papirus-icon-theme paru perl picom pocl polybar psmisc pulseaudio python python2 qt5ct responder rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wfuzz wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrandr xterm yay zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
 
 
 ## Install git packages
@@ -23,6 +23,7 @@ echo "[+] Installing additional packages..."
 sudo find / -name "EXTERNALLY-MANAGED" 2>/dev/null -exec mv {} {}.old \;
 sudo python3 -m ensurepip --upgrade
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py && sudo python2 get-pip.py
+yay -S rofi-file-browser-extended-git --noconfirm
 wget "https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage" && chmod u+x nvim.appimage && sudo mv nvim.appimage /usr/bin/nvim
 git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit 
 sudo git clone https://github.com/longld/peda.git /root/peda && echo "source /root/peda/peda.py" >> /root/.gdbinit
