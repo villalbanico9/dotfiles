@@ -1,5 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# Setup
+
+echo "[+] Setting up..."
 mkdir ~/{.config,Desktop,Downloads,Docker,Workdir,Scripts,Screenshots}
 sudo mkdir /root/.config
 
@@ -13,7 +16,7 @@ sudo locale-gen en_US.UTF-8
 echo "[+] Installing packages..."
 curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh
 sudo pacman -Syu --noconfirm --needed
-sudo pacman -S adwaita-cursors alsa-lib alsa-plugins alsa-tools alsa-utils apr-util autoconf automake base base-devel bat bspwm burpsuite bzip2 clang cmake crackmapexec curl devtools docker dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb ghidra git gnu-netcat go gobuster gzip hashcat hash-identifier hydra inetutils impacket iputils john kitty less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter lsd lua lxappearance man-db mariadb mesa mesa-utils metasploit net-tools networkmanager nmap openvpn papirus-icon-theme paru perl picom pocl polybar psmisc pulseaudio python python2 qt5ct responder rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wfuzz wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrandr xterm yay zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
+sudo pacman -S adwaita-cursors alsa-lib alsa-plugins alsa-tools alsa-utils apr-util arp-scan autoconf automake base base-devel bat bspwm burpsuite bzip2 clang cmake crackmapexec curl devtools docker dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb ghidra git gnu-netcat go gobuster gzip hashcat hash-identifier hydra inetutils impacket iputils john kitty kvantum less lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter locate lsd lua lxappearance macchanger man-db mariadb mesa mesa-utils metasploit net-tools networkmanager nm-connection-editor nmap openvpn papirus-icon-theme paru perl picom pocl polybar proxychains psmisc pulseaudio python python2 qt6ct responder rlwrap rofi ruby sqlite samba sqlmap starship sxhkd systemd tar thunar tree unzip util-linux webkit2gtk wfuzz wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrandr xterm yay zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
 
 
 ## Install git packages
@@ -23,7 +26,8 @@ echo "[+] Installing additional packages..."
 sudo find / -name "EXTERNALLY-MANAGED" 2>/dev/null -exec mv {} {}.old \;
 sudo python3 -m ensurepip --upgrade
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py && sudo python2 get-pip.py
-yay -S rofi-file-browser-extended-git --noconfirm
+yay -S rofi-file-browser-extended-git bsp-layout --noconfirm
+gem install wpscan
 wget "https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage" && chmod u+x nvim.appimage && sudo mv nvim.appimage /usr/bin/nvim
 git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit 
 sudo git clone https://github.com/longld/peda.git /root/peda && echo "source /root/peda/peda.py" >> /root/.gdbinit
@@ -62,8 +66,8 @@ sudo cp lightdm/lightdm.conf /etc/lightdm/
 sudo cp lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
 sudo rm -rf lightdm
 
-echo 'QT_STYLE_OVERRIDE=Adwaita-Dark' | sudo tee -a /etc/environment
-echo 'QT_QPA_PLATFORMTHEME=qt5ct' | sudo tee -a /etc/environment
+echo 'QT_STYLE_OVERRIDE=Kvantum' | sudo tee -a /etc/environment
+echo 'QT_QPA_PLATFORMTHEME=qt6ct' | sudo tee -a /etc/environment
 
 sudo cp pam/lightdm /etc/pam.d/
 sudo cp pam/system-auth /etc/pam.d/
@@ -76,10 +80,15 @@ sudo cp -r * /root/.config/
 sudo mv /root/.config/root_starship.toml /root/.config/starship.toml
 cp -r * ~/.config
 
+sed -i "s/\$USER/$USER/g" ~/.zshrc
+sudo sed -i "s/\$USER/$USER/g" /root/.zshrc
+
 sudo mkdir /usr/share/wordlists
 wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip
-sudo mv SecLists-master /usr/share/SecLists
-wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt && sudo mv rockyou.txt /usr/share/wordlists/
+sudo mv SecLists-master /usr/share/wordlists/SecLists
+tar -zxvf /usr/share/wordlists/SecLists/Passwords/Leaked-Databases/rockyou.txt.tar.gz -C /usr/share/wordlists
+
+sudo updatedb
 
 sudo chsh -s $(which zsh)
 sudo chsh -s $(which zsh) $USER

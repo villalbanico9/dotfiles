@@ -13,7 +13,7 @@ set -e
 set -u
 
 # All supported choices
-all=(shutdown reboot logout lockscreen)
+all=(shutdown reboot suspend logout lockscreen)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
@@ -23,12 +23,14 @@ texts[lockscreen]="lock screen"
 texts[logout]="log out"
 texts[reboot]="reboot"
 texts[shutdown]="shut down"
+texts[suspend]="suspend"
 
 declare -A icons
-icons[shutdown]="/usr/share/icons/layout_icons/shutdown.png"
-icons[logout]="/usr/share/icons/layout_icons/logout.png"
+icons[shutdown]="/usr/share/icons/Papirus-Dark/symbolic/actions/system-shutdown-symbolic.svg"
+icons[logout]="/usr/share/icons/Papirus-Dark/symbolic/actions/system-log-out-symbolic.svg"
 icons[reboot]="/usr/share/icons/Papirus/16x16/panel/system-restart-panel.svg"
-icons[lockscreen]="/usr/share/icons/layout_icons/lockscreen.png"
+icons[lockscreen]="/usr/share/icons/Papirus-Dark/symbolic/actions/system-lock-screen-symbolic.svg"
+icons[suspend]="/usr/share/icons/Papirus-Dark/symbolic/actions/system-suspend-symbolic.svg"
 icons[cancel]="/usr/share/icons/Papirus/16x16/actions/cancel.svg"
 
 declare -A actions
@@ -36,9 +38,10 @@ actions[lockscreen]="dm-tool lock"
 actions[logout]="loginctl terminate-session ${XDG_SESSION_ID-}"
 actions[reboot]="systemctl reboot"
 actions[shutdown]="systemctl poweroff"
+actions[suspend]="systemctl suspend"
 
 # By default, ask for confirmation for actions that are irreversible
-confirmations=(reboot shutdown logout)
+confirmations=(reboot shutdown suspend logout)
 
 # By default, no dry run
 dryrun=false

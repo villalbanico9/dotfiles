@@ -1,5 +1,4 @@
-# ~/.zshrc file for zsh interactive shells.
-# see /usr/share/doc/zsh/examples/zshrc for examples
+# .zshrc
 
 
 # VARIABLES
@@ -196,7 +195,6 @@ alias cat='bat --paging=never'
 alias catn='bat --style=plain'
 alias catnp='bat --style=plain --paging=never'
 alias cgrep='grep --color=always'
-alias ghidra='/opt/ghidra/ghidraRun'
 
 
 # Set keybindings for fzf

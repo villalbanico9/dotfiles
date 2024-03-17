@@ -8,7 +8,7 @@ configuration {
     background:                  #151515f8;
     background-alt:              #e813442c;
     foreground:                  #ffffffff;
-    selected:                    #e81344cf;
+    selected:                    #e81344ff;
     active:                      #e81344cf;
     urgent:                      #e81344cf;
 }
@@ -80,6 +80,7 @@ entry {
     placeholder-color:           inherit;
 }
 prompt {
+    font:                        "Product Sans Bold 12";
     enabled:                     false;
     expand:                      false;
     width:                       550px;
