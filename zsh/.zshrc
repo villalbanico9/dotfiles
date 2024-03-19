@@ -195,6 +195,7 @@ alias cat='bat --paging=never'
 alias catn='bat --style=plain'
 alias catnp='bat --style=plain --paging=never'
 alias cgrep='grep --color=always'
+alias cheatsheet='curl -s https://raw.githubusercontent.com/villalbanico9/H4ckingTools/main/cheatsheet.sh | sh'
 
 
 # Set keybindings for fzf
