@@ -1,26 +1,26 @@
 format = """
-$character$username$directory$custom 
+$character $username $directory $custom 
 """
 
 add_newline = false
 
 [character]
-format = "[](bg:# fg:#1a1a1a bold)[$symbol](bold)[](bg:#de2a46 fg:#1a1a1a bold)"
-success_symbol = "[ 󰊠 ](bold bg:#1a1a1a fg:#f2ae49)"
-error_symbol = "[ 󰧵 ](bold bg:#1a1a1a fg:#de2a46)"
+format = "[$symbol](bold)"
+success_symbol = "[󰊠 ](bold bg:# fg:#f2ae49)"
+error_symbol = "[󰧵 ](bold bg:# fg:#de2a46)"
 
 [username]
-format = "[ $user ](bg:#de2a46 fg:#d1d1d1 bold)[](bg:# fg:#de2a46 bold)"
+format = "[$user](bg:# fg:#d1d1d1 bold)"
 disabled = false
 show_always = true
 
 [directory]
 truncation_length = 100
 truncate_to_repo = false
-format = "[ $path ](fg:#5040c9 bg:# bold)"
+format = "[$path](fg:#8264DE bg:# bold)"
 
 [custom.1]
-command = 'echo "#_"'
+command = 'echo "#"'
 when = 'true'
-format = '[](bg:# fg:#1a1a1a bold)[ $output ](bg:#1a1a1a fg:#d1d1d1 bold)[](bg:# fg:#1a1a1a bold)'
+format = '[$output](bg:# fg:#a0a0a0 bold)'
 

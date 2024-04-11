@@ -6,7 +6,7 @@ rofi                                              \
   -file-browser-hide-hidden-symbol ""             \
   -file-browser-open-multi-key "kb-custom-9"      \
   -file-browser-toggle-hidden-key "kb-custom-1"   \
-  -modi "drun,window,file-browser-extended,run:~/.config/bin/powermenu.sh" \
+  -modi "drun,window,run:~/.config/bin/powermenu.sh" \
   -matching glob                                  \
   -disable-history -sort -drun-sort               \
   -show $1                                        \

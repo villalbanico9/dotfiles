@@ -1,9 +1,8 @@
 configuration {
-    modi:                                 "drun,file-browser-extended,window,run";
+    modi:                                 "drun,window,run";
     show-icons:                           true;
     display-drun:                         "";
     display-run:                          "";
-    display-file-browser-extended:        "";
     display-window:                       "";
     drun-display-format:                  "{name}";
     window-format:                        "{c}"; 
@@ -11,30 +10,30 @@ configuration {
 }
 
 * {
-    font:                        "Product Sans 12";
-    background:                  #151515f8;
+    font:                        "Product Sans 10";
+    background:                  #0F0C13f8;
     background-alt:              #ffffff0c;
     foreground:                  #ffffffff;
-    selected:                    #4634ebff;
-    active:                      #ffffff1f;
-    urgent:                      #ffffff1f;
+    selected:                    #292231ff;
+    active:                      #292231ff;
+    urgent:                      #292231ff;
 }
 
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    north east;
+    location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       750px;
-    x-offset:                    -20%;
-    y-offset:                    43.5%;
+    width:                       30%;
+    x-offset:                    0%;
+    y-offset:                    -5%;
 
     /* properties for all widgets */
     enabled:                     true;
     border-radius:               8px;
     border:                      0.1em;
-    border-color:                #1f1f1f;
+    border-color:                #292231;
     cursor:                      "default";
     background-color:            @background;
 }
@@ -65,11 +64,11 @@ inputbar {
     children:                    [ "textbox-prompt-colon", "entry", "dummy", "mode-switcher" ];
 }
 textbox-prompt-colon {
-    font:                       "Product Sans 20";
+    font:                       "Product Sans 14";
     enabled:                     true;
     expand:                      false;
     str:                         "";
-    padding:                     5px 13px 0px 13px;
+    padding:                     6px 15px 0px 12px;
     border-radius:               100%;
     background-color:            @background-alt;
     text-color:                  inherit;
@@ -98,7 +97,7 @@ mode-switcher{
     text-color:                  @foreground;
 }
 button {
-    font:                       "Material Symbols Outline 16";
+    font:                       "Material Symbols Outline 12";
     padding:                     0px 0.58% 0px 0.58%;
     border-radius:               100%;
     background-color:            @background-alt;
@@ -116,7 +115,7 @@ listview {
     history-enabled:             false;
     drun: true;
     columns:                     1;
-    lines:                       12;
+    lines:                       8;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -166,7 +165,7 @@ element selected.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        28px;
+    size:                        26px;
     cursor:                      inherit;
 }
 element-text {

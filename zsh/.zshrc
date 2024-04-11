@@ -136,6 +136,12 @@ function clearTarget(){
     echo '' > /home/$USER/.config/bin/target
 }
 
+function sttySize(){
+  read r c < <(stty size | awk '{print $1, $2}')
+  echo "[+] Command copied to clipboard: stty rows $r columns $c"
+  echo -n "stty rows $r columns $c" | xclip -sel clip
+}
+
 function dockerClear(){
   echo "[+] Cleaning Docker..."
   docker rm -f $(docker ps -a -q) &>/dev/null
@@ -195,7 +201,6 @@ alias cat='bat --paging=never'
 alias catn='bat --style=plain'
 alias catnp='bat --style=plain --paging=never'
 alias cgrep='grep --color=always'
-alias cheatsheet='curl -s https://raw.githubusercontent.com/villalbanico9/H4ckingTools/main/cheatsheet.sh | sh'
 
 
 # Set keybindings for fzf

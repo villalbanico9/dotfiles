@@ -4,30 +4,30 @@ configuration {
 }
 
 * {
-    font:                        "Product Sans 12";
-    background:                  #151515f8;
-    background-alt:              #e813442c;
+    font:                        "Product Sans 10";
+    background:                  #0F0C13f8;
+    background-alt:              #ffffff0c;
     foreground:                  #ffffffff;
-    selected:                    #e81344ff;
-    active:                      #e81344cf;
-    urgent:                      #e81344cf;
+    selected:                    #292231ff;
+    active:                      #292231ff;
+    urgent:                      #292231ff;
 }
 
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    north;
+    location:                    center;
     anchor:                      center;
     fullscreen:                  false;
     width:                       400px;
-    x-offset:                    0;
-    y-offset:                    25%;
+    x-offset:                    0%;
+    y-offset:                    -5%;
 
     /* properties for all widgets */
     enabled:                     true;
     border-radius:               8px;
     border:                      0.1em;
-    border-color:                #1f1f1f;
+    border-color:                #292231;
     cursor:                      "default";
     background-color:            @background;
 }
@@ -58,11 +58,11 @@ inputbar {
     children:                    [ "textbox-prompt-colon", "dummy" ,"entry" ];
 }
 textbox-prompt-colon {
-    font:                       "Material Symbols Outlined 16";
+    font:                       "Material Symbols Outlined 14";
     enabled:                     true;
     expand:                      false;
     str:                         "";
-    padding:                     7px 11px 0px 11px;
+    padding:                     7px 10px 0px 10px;
     border-radius:               100%;
     background-color:            @background-alt;
     text-color:                  inherit;
@@ -80,13 +80,13 @@ entry {
     placeholder-color:           inherit;
 }
 prompt {
-    font:                        "Product Sans Bold 12";
+    font:                        "Product Sans Bold 10";
     enabled:                     false;
     expand:                      false;
     width:                       550px;
     padding:                     10px 20px 10px 20px;
     border-radius:               100%;
-    background-color:            @background-alt;
+    background-color:            @active;
     text-color:                  @foreground;
 }
 dummy {
