@@ -201,6 +201,7 @@ alias cat='bat --paging=never'
 alias catn='bat --style=plain'
 alias catnp='bat --style=plain --paging=never'
 alias cgrep='grep --color=always'
+alias mkt='mkdir /home/nico/Workdir/{scan,info,exploits}'
 
 
 # Set keybindings for fzf
