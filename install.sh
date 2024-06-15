@@ -16,7 +16,7 @@ sudo locale-gen en_US.UTF-8
 echo "[+] Installing packages..."
 curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh
 sudo pacman -Syu --noconfirm --needed
-sudo pacman -S adwaita-cursors alsa-lib alsa-plugins alsa-tools alsa-utils apr-util arp-scan autoconf automake base base-devel bat bspwm burpsuite bzip2 cewl clang cmake crackmapexec curl devtools docker dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb ghidra git gnu-netcat go gobuster gzip hashcat hash-identifier hydra inetutils impacket iputils john kitty kvantum less lib32-gcc-libs lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter locate lsd ltrace lua lxappearance macchanger man-db mariadb mesa mesa-utils metasploit net-tools networkmanager nm-connection-editor nmap openvpn papirus-icon-theme paru perl picom pocl polybar proxychains psmisc pulseaudio python python2 qt6ct responder rlwrap rofi ruby sqlite samba sqlmap starship strace sxhkd systemd tar tcpdump thunar tree unzip util-linux webkit2gtk wfuzz wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrandr xterm yay zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
+sudo pacman -S adwaita-cursors alsa-lib alsa-plugins alsa-tools alsa-utils apr-util arp-scan autoconf automake base base-devel bat bspwm burpsuite bzip2 cewl clang cmake crackmapexec curl devtools docker dpkg exploitdb feh firefox flameshot fuse fzf gc gcc gdb ghidra git gnu-netcat go gobuster gzip hashcat hash-identifier hydra inetutils impacket iputils john kitty kvantum less lib32-gcc-libs lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter locate lsd ltrace lua lxappearance macchanger man-db mariadb mesa mesa-utils metasploit net-tools networkmanager nm-connection-editor nmap openvpn papirus-icon-theme paru perl picom pocl polybar proxychains psmisc pulseaudio python python2 python39 qt6ct responder rlwrap rofi ruby sqlite samba sqlmap starship strace sxhkd systemd tar tcpdump thunar tree unzip util-linux webkit2gtk wfuzz wget wireshark-qt wmname xclip xdg-utils xdotool xf86-input-libinput xorg-server-common xorg-xrandr xterm yay zip zsh zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
 
 
 ## Install git packages
@@ -51,6 +51,8 @@ sudo rm -rf fonts && sudo rm -rf assets/fonts.tar.gz
 sudo mkdir /usr/share/backgrounds
 sudo cp assets/background.png /usr/share/backgrounds
 sudo rm -rf assets
+
+sudo touch /usr/share/target.txt && chmod 777 /usr/share/target.txt
 
 cp zsh/.zshrc ~
 sudo cp zsh/.zshrc /root/

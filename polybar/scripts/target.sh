@@ -8,5 +8,5 @@ target() {
 }
 
 ans=$(target &)
-echo $ans > ~/.config/bin/target
+echo $ans > /usr/share/target.txt
  

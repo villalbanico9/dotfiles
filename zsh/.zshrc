@@ -189,6 +189,20 @@ function extractPorts(){
         cat extractPorts.tmp; rm extractPorts.tmp
 }
 
+function mkt(){
+  mkdir /home/nico/Workdir/{scan,info,exploits} 2>/dev/null
+
+  vpn_tab_id=$(kitty @ launch --type=tab --title="VPN")
+  kitty @ send-text --match=id:${vpn_tab_id} "cdn && clear\n"
+
+  scan_tab_id=$(kitty @ launch --type=tab --title="Scan")
+  kitty @ send-text --match=id:${scan_tab_id} "cdw && clear\n"
+
+  term_tab_id=$(kitty @ launch --type=tab --title="Term")
+  kitty @ send-text --match=id:${term_tab_id} "cdw && clear\n"
+}
+
+
 
 # Alias
 alias ll='lsd -lh --group-dirs=first'
@@ -201,7 +215,6 @@ alias cat='bat --paging=never'
 alias catn='bat --style=plain'
 alias catnp='bat --style=plain --paging=never'
 alias cgrep='grep --color=always'
-alias mkt='mkdir /home/nico/Workdir/{scan,info,exploits}'
 
 
 # Set keybindings for fzf

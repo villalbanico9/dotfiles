@@ -21,7 +21,7 @@ window {
     fullscreen:                  false;
     width:                       400px;
     x-offset:                    0%;
-    y-offset:                    -5%;
+    y-offset:                    -3%;
 
     /* properties for all widgets */
     enabled:                     true;
@@ -41,8 +41,8 @@ mainbox {
 }
 
 listbox {
-    spacing:                     20px;
-    padding:                     40px;
+    spacing:                     10px;
+    padding:                     5px;
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "listview" ];
@@ -97,7 +97,7 @@ dummy {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       5;
+    lines:                       1;
     cycle:                       true;
     dynamic:                     false;
     scrollbar:                   false;
@@ -105,7 +105,7 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    spacing:                     10px;
+    spacing:                     0px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";

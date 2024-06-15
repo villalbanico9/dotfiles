@@ -5,9 +5,8 @@ super + Return
 # Launcher
 super + @space
   ~/.config/bin/menu.sh drun	
-shift + super + @space
-  bspc rule -a \* -o state=floating center=true rectangle=250x60+0+0 && kitty sudo -EH rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/launcher.rasi
-
+shift + super + Return
+  ~/.config/bin/super_kitty.sh
 # Reload sxhkd
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -91,13 +90,13 @@ super + shift + s
 
 # Clipboard
 F1
-  xclip -o > /tmp/clipboard1 | xclip -selection clipboard
+  ~/.config/bin/paste_host.sh
 F2
-  xclip -o > /tmp/clipboard2 | xclip -selection clipboard
+  ~/.config/bin/paste_target.sh
 F3
-  cat /tmp/clipboard1 | xclip -selection clipboard && cat /tmp/clipboard1 | xclip -selection primary && sleep .1; xdotool key --clearmodifiers ctrl+shift+v
+  xclip -o > /tmp/clipboard1
 F4
-  cat /tmp/clipboard2 | xclip -selection clipboard && cat /tmp/clipboard2 | xclip -selection primary && sleep .1; xdotool key --clearmodifiers ctrl+shift+v
+  sleep .1 && xdotool type --delay 0 --file /tmp/clipboard1
 
 
 # Powermenu
